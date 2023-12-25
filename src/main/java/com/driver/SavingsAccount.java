@@ -22,7 +22,7 @@ public class SavingsAccount extends BankAccount{
         if(amount>getBalance()){
             throw  new minbalException("Insufficient Balance");
         }
-        setBalance(this.getBalance()-amount);
+        setBalance(getBalance()-amount);
 
 
     }
@@ -30,13 +30,17 @@ public class SavingsAccount extends BankAccount{
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
 
-        return this.getBalance()+((this.getBalance()*years*rate)/100);
+        double bal=getBalance();
+        double interest=(bal*rate*years)/100;
+        return bal+interest;
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-          double compoundInterest = this.getBalance() * Math.pow(1 + (rate /100* times), times * years) - this.getBalance();
-            return this.getBalance()+compoundInterest;
+        double bal=getBalance();
+        double term=rate/(100*times);
+        double mult=Math.pow(1+term,times*years);
+        return mult*bal;
 
     }
 
