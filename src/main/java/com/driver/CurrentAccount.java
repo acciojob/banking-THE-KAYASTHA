@@ -6,10 +6,13 @@ import java.util.PriorityQueue;
 public class CurrentAccount extends BankAccount{
     String tradeLicenseId; //consists of Uppercase English characters only
 
-    public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
+    public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception, minbalException {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name,balance,5000);
         this.tradeLicenseId=tradeLicenseId;
+        if(balance<getMinBalance()){
+            throw new minbalException("Insufficient Balance");
+        }
     }
 
     public String getTradeLicenseId() {
@@ -62,7 +65,7 @@ public class CurrentAccount extends BankAccount{
             }
             if(!maxHeap.isEmpty()){
                 char ch= maxHeap.poll();
-                if(hmap.get(ch)>1) throw new  Exception("Valid License can not be generated");
+                if(hmap.get(ch)>1) throw new exceptions("Valid License can not be generated");
                 res.append(ch);
             }
             this.tradeLicenseId=res.toString();
@@ -76,33 +79,5 @@ public class CurrentAccount extends BankAccount{
 
     }
 
-    @Override
-    public double getBalance() {
-        return super.getBalance();
-    }
 
-    @Override
-    public double getMinBalance() {
-        return super.getMinBalance();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setBalance(double balance) {
-        super.setBalance(balance);
-    }
-
-    @Override
-    public void setMinBalance(double minBalance) {
-        super.setMinBalance(minBalance);
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
-    }
 }

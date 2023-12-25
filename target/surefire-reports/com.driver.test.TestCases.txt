@@ -1,4 +1,20 @@
 -------------------------------------------------------------------------------
 Test set: com.driver.test.TestCases
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s - in com.driver.test.TestCases
+Tests run: 15, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.067 s <<< FAILURE! - in com.driver.test.TestCases
+testSavingsAccount1  Time elapsed: 0.011 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.driver.test.TestCases.testSavingsAccount1(TestCases.java:462)
+
+testSavingsAccount2  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.driver.test.TestCases.testSavingsAccount2(TestCases.java:480)
+
+testSavingsAccount3  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.driver.test.TestCases.testSavingsAccount3(TestCases.java:487)
+
+testSavingsAccount4  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.driver.test.TestCases.testSavingsAccount4(TestCases.java:494)
+

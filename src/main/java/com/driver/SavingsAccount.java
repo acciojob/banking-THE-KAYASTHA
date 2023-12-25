@@ -11,54 +11,36 @@ public class SavingsAccount extends BankAccount{
         this.maxWithdrawalLimit=maxWithdrawalLimit;
 
     }
-    public void withdraw(double amount) throws Exception {
+    public void withdraw(double amount) throws Exception, minbalException {
         // Might throw the following errors:
         // 1. "Maximum Withdraw Limit Exceed" : If the amount exceeds maximum withdrawal limit
         // 2. "Insufficient Balance" : If the amount exceeds balance
         if(amount>maxWithdrawalLimit){
-            throw new Exception("Maximum Withdraw Limit Exceed");
+            throw new maxwithException("Maximum Withdraw Limit Exceeded");
 
         }
-        if(amount>super.getBalance()){
-            throw new Exception("Insufficient Balance");
+        if(amount>getBalance()){
+            throw  new minbalException("Insufficient Balance");
         }
-        super.setBalance(super.getBalance()-amount);
+        setBalance(this.getBalance()-amount);
 
 
     }
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-        double SI=(this.getBalance()*years*rate)/100;
 
-        return SI;
+        return this.getBalance()+((this.getBalance()*years*rate)/100);
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-        double compoundInterest = this.getBalance() * Math.pow(1 + (rate /100* times), times * years) - this.getBalance();
-            return compoundInterest;
+          double compoundInterest = this.getBalance() * Math.pow(1 + (rate /100* times), times * years) - this.getBalance();
+            return this.getBalance()+compoundInterest;
+
     }
 
-    @Override
-    public String generateAccountNumber(int digits, int sum) throws Exception {
-        return super.generateAccountNumber(digits, sum);
-    }
 
-    @Override
-    public double getMinBalance() {
-        return super.getMinBalance();
-    }
-
-    @Override
-    public double getBalance() {
-        return super.getBalance();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
 
     public double getMaxWithdrawalLimit() {
         return maxWithdrawalLimit;
